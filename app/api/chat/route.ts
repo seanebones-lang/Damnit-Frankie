@@ -3,9 +3,11 @@ import { z } from "zod";
 import { getServerEnv } from "@/lib/env";
 import { buildKnowledgeContext, KNOWLEDGE_BLOCK } from "@/lib/ai/knowledge";
 import { PERSONA_SYSTEM, SAFETY_REFUSAL } from "@/lib/ai/persona";
-import { createXaiResponse } from "@/lib/ai/xai";
+import { createXaiAssistantReply } from "@/lib/ai/xai";
 
 export const runtime = "nodejs";
+/** Vercel / Next — raise on Pro if Grok runs long. @see https://vercel.com/docs/functions/runtimes */
+export const maxDuration = 60;
 
 const bodySchema = z.object({
   messages: z
@@ -64,7 +66,7 @@ ${KNOWLEDGE_BLOCK}
 ${retrieval}`;
 
   try {
-    const { text, id } = await createXaiResponse({
+    const { text, responseId } = await createXaiAssistantReply({
       apiKey: xaiApiKey,
       model: xaiModel,
       system,
@@ -73,7 +75,7 @@ ${retrieval}`;
     });
 
     const reply = text.trim() || "I’m speechless — in a good way. Try again or call **817-655-0959**.";
-    return NextResponse.json({ reply, responseId: id });
+    return NextResponse.json({ reply, responseId });
   } catch (e) {
     console.error("[chat]", e);
     return NextResponse.json(

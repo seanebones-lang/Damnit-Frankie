@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-type Filter = "all" | "tattoos" | "mixed" | "healed";
+type Filter = "all" | "tattoos" | "mixed";
 
 const items: {
   id: string;
@@ -15,43 +15,47 @@ const items: {
   story?: string;
 }[] = [
   {
-    id: "1",
-    title: "Blackwork sleeve — session 2",
+    id: "port1",
+    title: "Tattoo work I",
     filter: "tattoos",
-    src: "https://images.unsplash.com/photo-1611501275019-9b5cda994e1d?w=600&q=80",
-    story: "Geometry meets negative space; built for how it ages.",
+    src: "/images/tattoos/port1.jpg",
   },
   {
-    id: "2",
-    title: "Fine line botanical",
+    id: "port2",
+    title: "Tattoo work II",
     filter: "tattoos",
-    src: "https://images.unsplash.com/photo-1568515387631-8b650bbcdb90?w=600&q=80",
+    src: "/images/tattoos/port2.jpg",
   },
   {
-    id: "3",
-    title: "Mixed media study — ink on paper",
+    id: "port3",
+    title: "Tattoo work III",
+    filter: "tattoos",
+    src: "/images/tattoos/port3.jpg",
+  },
+  {
+    id: "port4",
+    title: "Tattoo work IV",
+    filter: "tattoos",
+    src: "/images/tattoos/port4.jpg",
+  },
+  {
+    id: "mixed1",
+    title: "Mixed media I",
     filter: "mixed",
-    src: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=600&q=80",
-    story: "Original composition — sometimes the skin starts on the wall.",
+    src: "/images/mixed/mixed1.jpg",
+    story: "Studio work beyond the skin.",
   },
   {
-    id: "4",
-    title: "Traditional chest piece",
-    filter: "tattoos",
-    src: "https://images.unsplash.com/photo-1598371626478-0e3f64949c87?w=600&q=80",
-  },
-  {
-    id: "5",
-    title: "Healed color — 8 months",
-    filter: "healed",
-    src: "https://images.unsplash.com/photo-1590736969955-71cc94901144?w=600&q=80",
-    story: "Saturated pigments, sane aftercare, sun discipline.",
-  },
-  {
-    id: "6",
-    title: "Charcoal + gold leaf",
+    id: "mixed2",
+    title: "Mixed media II",
     filter: "mixed",
-    src: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600&q=80",
+    src: "/images/mixed/mixed2.jpg",
+  },
+  {
+    id: "mixed3",
+    title: "Mixed media III",
+    filter: "mixed",
+    src: "/images/mixed/mixed3.jpg",
   },
 ];
 
@@ -59,7 +63,6 @@ const filters: { id: Filter; label: string }[] = [
   { id: "all", label: "All" },
   { id: "tattoos", label: "Tattoos" },
   { id: "mixed", label: "Mixed media" },
-  { id: "healed", label: "Healed" },
 ];
 
 export function Portfolio() {
@@ -75,8 +78,8 @@ export function Portfolio() {
               Portfolio
             </h2>
             <p className="mt-3 max-w-xl text-[var(--color-muted)]">
-              Tattoos, healed results, and mixed-media work — curated so you can
-              feel the range before you sit.
+              Tattoo portfolio and mixed-media pieces — swap titles anytime to
+              match the story behind each image.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">

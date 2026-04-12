@@ -12,6 +12,14 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+const artistHero = "/images/artist/frank-1.jpg";
+const artistThumbs = [
+  { src: "/images/artist/frank-2.jpg", alt: "Damnit Frankie in the studio" },
+  { src: "/images/artist/frank-3.jpg", alt: "Damnit Frankie — artist portrait" },
+  { src: "/images/artist/frank-11.jpg", alt: "Damnit Frankie" },
+  { src: "/images/artist/frank-22.jpeg", alt: "Damnit Frankie — portrait" },
+] as const;
+
 export function Hero() {
   const root = useRef<HTMLDivElement>(null);
   const line1 = useRef<HTMLHeadingElement>(null);
@@ -73,7 +81,7 @@ export function Hero() {
   return (
     <section
       ref={root}
-      className="relative min-h-[100dvh] overflow-hidden pt-16"
+      className="relative min-h-[100dvh] overflow-hidden pt-[calc(3.5rem+env(safe-area-inset-top,0px))] md:pt-[calc(4rem+env(safe-area-inset-top,0px))]"
       aria-label="Introduction"
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_70%_20%,rgba(196,92,62,0.15),transparent_50%)]" />
@@ -131,23 +139,40 @@ export function Hero() {
 
         <div
           ref={media}
-          className="relative aspect-[4/5] w-full max-w-md justify-self-end md:max-w-none"
+          className="relative w-full max-w-md justify-self-end space-y-3 md:max-w-none"
         >
           <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-[var(--color-accent)]/20 to-transparent blur-2xl" />
           <div className="relative overflow-hidden rounded-3xl border border-[var(--color-paper)]/10 shadow-2xl">
-            <Image
-              src="https://images.unsplash.com/photo-1590246814883-57c511cb0b2b?w=800&q=80"
-              alt="Tattoo artist at work — placeholder portfolio imagery"
-              width={800}
-              height={1000}
-              className="h-full w-full object-cover"
-              priority
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
+            <div className="relative aspect-[4/5] w-full">
+              <Image
+                src={artistHero}
+                alt="Damnit Frankie — tattoo artist"
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
             <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-ink)]/80 via-transparent to-transparent" />
             <p className="absolute bottom-6 left-6 right-6 font-[family-name:var(--font-display)] text-2xl text-[var(--color-paper)]">
               Precision. Presence. A little chaos.
             </p>
+          </div>
+          <div className="relative grid grid-cols-4 gap-2">
+            {artistThumbs.map((img) => (
+              <div
+                key={img.src}
+                className="relative aspect-square overflow-hidden rounded-xl border border-[var(--color-paper)]/10"
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 25vw, 12vw"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>

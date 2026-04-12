@@ -24,7 +24,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | Variable | Purpose |
 |----------|---------|
 | `XAI_API_KEY` | Server-side xAI key for `/api/chat` and `/api/tts` |
-| `XAI_MODEL` | Model id for Responses API (see xAI console) |
+| `XAI_MODEL` | Grok model id ([models list](https://docs.x.ai/developers/models)); default `grok-4-1-fast-non-reasoning` |
 | `BOOKING_WEBHOOK_URL` | Optional POST target for booking + waitlist JSON |
 | `NEXT_PUBLIC_SITE_URL` | Canonical URL for metadata |
 

@@ -3,6 +3,7 @@ import { DM_Sans, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { ConciergePanel } from "@/components/ai/concierge-panel";
 import { SiteHeader } from "@/components/site-header";
+import { resolveMetadataBase } from "@/lib/metadata-base";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -22,9 +23,7 @@ export const metadata: Metadata = {
   },
   description:
     "High-end tattoo artist Damnit Frankie — by appointment, traveling worldwide. Books open, walk-ins welcome. Book, browse portfolio, or ask the concierge.",
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://damnitfrankie.com"
-  ),
+  metadataBase: resolveMetadataBase(),
   openGraph: {
     title: "Damnit Frankie",
     description: "Luxury tattoos & mixed media. Worldwide by appointment.",
@@ -34,6 +33,9 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: "#0a0a0b",
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 const jsonLd = {
@@ -64,7 +66,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${dmSans.className} min-h-screen`}>
+      <body className={`${dmSans.className} min-h-screen overflow-x-hidden`}>
         <SiteHeader />
         <main>{children}</main>
         <ConciergePanel />

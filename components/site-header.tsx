@@ -18,8 +18,8 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 z-40 w-full border-b border-[var(--color-paper)]/10 bg-[var(--color-ink)]/80 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+    <header className="fixed top-0 z-40 w-full border-b border-[var(--color-paper)]/10 bg-[var(--color-ink)]/80 pt-[env(safe-area-inset-top,0px)] backdrop-blur-md">
+      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6 md:h-16">
         <Link
           href="/"
           className="font-[family-name:var(--font-display)] text-xl tracking-tight text-[var(--color-paper)] sm:text-2xl"

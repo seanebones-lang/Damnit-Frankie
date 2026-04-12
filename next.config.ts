@@ -1,10 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  images: {
-    remotePatterns: [
-      { protocol: "https", hostname: "images.unsplash.com", pathname: "/**" },
-    ],
+  // Pin workspace root so builds don’t pick a parent lockfile when multiple exist locally.
+  turbopack: {
+    root: process.cwd(),
   },
 };
 
